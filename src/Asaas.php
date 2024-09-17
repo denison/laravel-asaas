@@ -2,7 +2,7 @@
 
 namespace Denison\AsaasPackage;
 
-use Denison\AsaasPackage\Services\Cliente;
+use Denison\AsaasPackage\Services\Client;
 
 class Asaas
 {
@@ -15,6 +15,6 @@ class Asaas
 
     public function Cliente()
     {
-        return new Cliente($this->connection);
+        return new Client($this->connection);
     }
 }

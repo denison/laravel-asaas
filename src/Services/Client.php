@@ -4,7 +4,7 @@ namespace Denison\AsaasPackage\Services;
 
 use Denison\AsaasPackage\Connection;
 
-class Cliente
+class Client
 {
     protected $connection;
 
