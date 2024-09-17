@@ -1,11 +1,9 @@
 <?php
 
 namespace Denison\AsaasPackage;
-
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\RequestException;
 
-class AsaasClient
+class Connection
 {
     protected $client;
     protected $apiKey;
@@ -35,14 +33,9 @@ class AsaasClient
         ]);
     }
 
-    public function getClients()
+    public function get($endpoint)
     {
-        try {
-            $response = $this->client->get('customers');
-            return json_decode($response->getBody()->getContents(), true);
-        } catch (RequestException $e) {
-            echo "Request failed: " . $e->getMessage();
-            return null;
-        }
+        return $this->client->request('GET', $endpoint);
     }
+
 }

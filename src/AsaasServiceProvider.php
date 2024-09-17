@@ -8,9 +8,8 @@ class AsaasServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton(AsaasClient::class, function ($app) {
-            $apiKey = config('asaas.api_key');
-            return new AsaasClient($apiKey);
+        $this->app->singleton(Asaas::class, function ($app) {
+            return new Asaas();
         });
     }
 
