@@ -2,7 +2,7 @@
 
 namespace Denison\AsaasPackage\Contracts;
 
-interface ClienteInterface
+interface ClientInterface
 {
     public function getAll();
     public function getById($id);

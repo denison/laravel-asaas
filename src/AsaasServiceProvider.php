@@ -2,7 +2,7 @@
 
 namespace Denison\AsaasPackage;
 
-use Denison\AsaasPackage\Contracts\ClienteInterface;
+use Denison\AsaasPackage\Contracts\ClientInterface;
 use Denison\AsaasPackage\Services\Client;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +14,7 @@ class AsaasServiceProvider extends ServiceProvider
             return new Asaas();
         });
 
-        $this->app->singleton(ClienteInterface::class, function ($app) {
+        $this->app->singleton(ClientInterface::class, function ($app) {
             return new Client(new Connection());
         });
     }
