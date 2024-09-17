@@ -3,8 +3,9 @@
 namespace Denison\AsaasPackage\Services;
 
 use Denison\AsaasPackage\Connection;
+use Denison\AsaasPackage\Contracts\ClienteInterface;
 
-class Client
+class Client implements ClienteInterface
 {
     protected $connection;
 
