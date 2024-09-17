@@ -2,8 +2,7 @@
 
 namespace Denison\AsaasPackage;
 
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\RequestException;
+use Denison\AsaasPackage\Services\Cliente;
 
 class Asaas
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Denison\AsaasPackage;
+namespace Denison\AsaasPackage\Services;
 
 use Denison\AsaasPackage\Connection;
 
