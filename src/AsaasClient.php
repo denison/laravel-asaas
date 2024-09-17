@@ -30,7 +30,7 @@ class AsaasClient
             'base_uri' => $this->baseUri,
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $this->apiKey,
+                'access_token' => $this->apiKey,
             ]
         ]);
     }

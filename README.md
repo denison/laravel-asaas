@@ -8,6 +8,16 @@ Pacote simples de pagamento para Laravel usando o Asaas.
 composer require denison/asaas-package
 
 ## Configuração
+```app.php
+
+'providers' => [
+    // Outros providers
+    Denison\AsaasPackage\AsaasServiceProvider::class,
+],
+
+```bash
+php artisan vendor:publish --provider="Denison\AsaasPackage\AsaasServiceProvider"
+
 
 Para usar o pacote, você precisa definir as seguintes variáveis de ambiente em seu arquivo `.env`:
 
