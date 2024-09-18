@@ -31,3 +31,40 @@ ASAAS_API_KEY_PRODUCTION=api_produção
 ```env
 ASAAS_API_URL_SANDBOX=https://sandbox.asaas.com/api/v3
 ASAAS_API_KEY_SANDBOX=api_sandbox
+
+
+##Instânciar o Asaas
+$asaas = new Asaas();
+
+##Pegar todos CLientes
+$customers = $asaas->Cliente()->getAll();
+
+
+## Exceções
+
+### `Denison\AsaasPackage\Exceptions\ConnectionException`
+
+Lançada quando há um erro na conexão com a API. 
+
+### `Denison\AsaasPackage\Exceptions\ApiException`
+
+Lançada quando a API retorna um erro.
+
+### `Denison\AsaasPackage\Exceptions\ClientException`
+
+Lançada para erros específicos do cliente.
+
+### Como Lidar com Exceções
+
+Você deve capturar essas exceções em seu código e tratá-las conforme necessário.
+
+```php
+try {
+    $customers = $asaas->Cliente()->getAll();
+} catch (\Denison\AsaasPackage\Exceptions\ConnectionException $e) {
+    // Tratar erro de conexão
+} catch (\Denison\AsaasPackage\Exceptions\ApiException $e) {
+    // Tratar erro da API
+} catch (\Denison\AsaasPackage\Exceptions\ClientException $e) {
+    // Tratar erro do cliente
+}
