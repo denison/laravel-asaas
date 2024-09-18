@@ -2,7 +2,8 @@
 
 namespace Denison\AsaasPackage;
 
-use Denison\AsaasPackage\Services\Client;
+use Denison\AsaasPackage\Factories\ConnectionFactory;
+use Denison\AsaasPackage\Factories\CustomerFactory;
 
 class Asaas
 {
@@ -10,11 +11,16 @@ class Asaas
 
     public function __construct()
     {
-        $this->connection = new Connection();
+        $this->connection = ConnectionFactory::create();
     }
 
     public function Cliente()
     {
-        return new Client($this->connection);
+        return CustomerFactory::create($this->connection);
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
     }
 }

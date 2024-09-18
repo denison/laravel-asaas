@@ -3,9 +3,11 @@
 namespace Denison\AsaasPackage\Services;
 
 use Denison\AsaasPackage\Connection;
-use Denison\AsaasPackage\Contracts\ClientInterface;
+use Denison\AsaasPackage\Contracts\CustomerInterface;
+use Denison\AsaasPackage\Factories\ClientFactory;
+use Denison\AsaasPackage\Factories\ConnectionFactory;
 
-class Client implements ClientInterface
+class Customer implements CustomerInterface
 {
     protected $connection;
 

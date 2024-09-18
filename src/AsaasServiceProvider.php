@@ -2,8 +2,10 @@
 
 namespace Denison\AsaasPackage;
 
-use Denison\AsaasPackage\Contracts\ClientInterface;
-use Denison\AsaasPackage\Services\Client;
+use Denison\AsaasPackage\Contracts\CustomerInterface;
+use Denison\AsaasPackage\Factories\ConnectionFactory;
+use Denison\AsaasPackage\Factories\CustomerFactory;
+use Denison\AsaasPackage\Services\Customer;
 use Illuminate\Support\ServiceProvider;
 
 class AsaasServiceProvider extends ServiceProvider
@@ -14,8 +16,10 @@ class AsaasServiceProvider extends ServiceProvider
             return new Asaas();
         });
 
-        $this->app->singleton(ClientInterface::class, function ($app) {
-            return new Client(new Connection());
+        
+        $this->app->singleton(CustomerInterface::class, function ($app) {
+            $asaas = $app->make(Asaas::class);
+            return CustomerFactory::create($asaas->getConnection());
         });
     }
 
