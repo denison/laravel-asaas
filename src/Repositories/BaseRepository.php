@@ -42,4 +42,16 @@ abstract class BaseRepository
         }
     }
 
+    public function create(string $endpoint, array $data = [], array $headers = [])
+    {
+        try{
+            return $this->connection->post($endpoint, $data, $headers);
+            return $this->responseProcessor->process($response);
+        }catch (ConnectionException $e) {
+            throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
+        } catch (ApiException $e) {
+            throw new ApiException('Erro retornado pela API.', 0, $e);
+        }
+    }
+
 }

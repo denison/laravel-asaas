@@ -41,4 +41,24 @@ class Connection
         }
     }
 
+    public function post($endpoint, $data = [], $headers = [])
+    {
+        try{
+            $response = $this->client->request('POST', $endpoint, [
+                'body' => json_encode($data), // Codifica manualmente o JSON
+                'headers' => array_merge([
+                    'accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ], $headers), // Adiciona cabeçalhos adicionais
+            ]);
+            return $response;
+        }catch(RequestException $e){
+            if ($e->getResponse()) {
+                throw new ApiException($e->getResponse()->getReasonPhrase(), $e->getCode(), $e);
+            } else {
+                throw new ConnectionException($e->getMessage(), $e->getCode(), $e);
+            }
+        }
+    }
+
 }
