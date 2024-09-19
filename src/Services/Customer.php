@@ -42,7 +42,7 @@ class Customer implements CustomerInterface
         return $this->customerRepo->create($endpoint, $customerDTO->toArray(), $headers);
     }
 
-    public function update(string $id, array $data): ?array
+    public function update(string $id, array $data = []): ?array
     {
         $customerDTO = CustomerUpdateDTO::create($data);
 
