@@ -1,6 +1,6 @@
 <?php
 
-namespace Denison\AsaasPackage\Repositories\Base;
+namespace Denison\AsaasPackage\Contracts;
 
 interface RepositoryInterface
 {

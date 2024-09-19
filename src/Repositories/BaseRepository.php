@@ -2,9 +2,9 @@
 
 namespace Denison\AsaasPackage\Repositories;
 
+use Denison\AsaasPackage\Contracts\RepositoryInterface;
 use Denison\AsaasPackage\Exceptions\ApiException;
 use Denison\AsaasPackage\Exceptions\ConnectionException;
-use Denison\AsaasPackage\Repositories\Base\RepositoryInterface;
 use Denison\AsaasPackage\Services\ResponseProcessor;
 
 abstract class BaseRepository implements RepositoryInterface
