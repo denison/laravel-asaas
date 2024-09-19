@@ -42,7 +42,7 @@ abstract class BaseRepository
         }
     }
 
-    public function create(string $endpoint, array $data = [], array $headers = [])
+    public function create(string $endpoint, array $data = [], array $headers = []): ?array
     {
         try{
             $response = $this->connection->post($endpoint, $data, $headers);
@@ -54,4 +54,15 @@ abstract class BaseRepository
         }
     }
 
+    public function update(string $endpoint, array $data = [], $headers = []): ?array
+    {
+        try{
+            $response = $this->connection->put($endpoint, $data, $headers);
+            return $this->responseProcessor->process($response);
+        }catch (ConnectionException $e) {
+            throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
+        } catch (ApiException $e) {
+            throw new ApiException('Erro retornado pela API.', 0, $e);
+        }
+    }
 }

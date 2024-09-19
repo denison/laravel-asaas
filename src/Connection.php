@@ -6,6 +6,7 @@ use Denison\AsaasPackage\Exceptions\ApiException;
 use Denison\AsaasPackage\Exceptions\ConnectionException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Response;
 
 class Connection
 {
@@ -27,7 +28,7 @@ class Connection
         ]);
     }
 
-    public function get($endpoint)
+    public function get($endpoint): Response
     {
         try{
             $response = $this->client->request('GET', $endpoint);
@@ -41,15 +42,15 @@ class Connection
         }
     }
 
-    public function post($endpoint, $data = [], $headers = [])
+    public function post($endpoint, $data = [], $headers = []): Response
     {
         try{
             $response = $this->client->request('POST', $endpoint, [
-                'body' => json_encode($data), // Codifica manualmente o JSON
+                'body' => json_encode($data),
                 'headers' => array_merge([
                     'accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                ], $headers), // Adiciona cabeçalhos adicionais
+                ], $headers),
             ]);
             return $response;
         }catch(RequestException $e){
@@ -61,4 +62,29 @@ class Connection
         }
     }
 
+    public function put($endpoint, $data = [], $headers = []): Response
+    {
+        try{
+            $options = [
+                'headers' => array_merge([
+                    'accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ], $headers),
+            ];
+            
+            if (!empty($data)) {
+                $options['body'] = json_encode($data);
+            }
+
+            $response = $this->client->request('PUT', $endpoint, $options);
+            
+            return $response;
+        }catch(RequestException $e){
+            if ($e->getResponse()) {
+                throw new ApiException($e->getResponse()->getReasonPhrase(), $e->getCode(), $e);
+            } else {
+                throw new ConnectionException($e->getMessage(), $e->getCode(), $e);
+            }
+        }
+    }
 }

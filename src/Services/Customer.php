@@ -5,6 +5,7 @@ namespace Denison\AsaasPackage\Services;
 use Denison\AsaasPackage\Connection;
 use Denison\AsaasPackage\Contracts\CustomerInterface;
 use Denison\AsaasPackage\DTO\CustomerDTO;
+use Denison\AsaasPackage\DTO\CustomerUpdateDTO;
 use Denison\AsaasPackage\Exceptions\ApiException;
 use Denison\AsaasPackage\Exceptions\ConnectionException;
 use Denison\AsaasPackage\Repositories\CustomerRepository;
@@ -39,5 +40,17 @@ class Customer implements CustomerInterface
             'accept' => 'application/json',
         ];
         return $this->customerRepo->create($endpoint, $customerDTO->toArray(), $headers);
+    }
+
+    public function update(string $id, array $data): ?array
+    {
+        $customerDTO = CustomerUpdateDTO::create($data);
+
+        $endpoint = "customers/{$id}";
+        $headers = [
+            'accept' => 'application/json',
+        ];
+        
+        return $this->customerRepo->update($endpoint, $customerDTO->toArray(), $headers);
     }
 }
