@@ -1,5 +1,7 @@
 <?php
 
+namespace Denison\AsaasPackage\Repositories;
+
 abstract class BaseRepository
 {
     protected $connection;
