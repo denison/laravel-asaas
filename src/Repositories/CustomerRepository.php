@@ -2,7 +2,7 @@
 
 namespace Denison\AsaasPackage\Repositories;
 
-use BaseRepository;
+use Denison\AsaasPackage\Repositories\BaseRepository;
 
 class CustomerRepository extends BaseRepository
 {
