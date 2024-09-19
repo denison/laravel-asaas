@@ -6,23 +6,23 @@ use Denison\AsaasPackage\Connection;
 use Denison\AsaasPackage\Contracts\CustomerInterface;
 use Denison\AsaasPackage\Exceptions\ApiException;
 use Denison\AsaasPackage\Exceptions\ConnectionException;
-use Denison\AsaasPackage\Factories\ClientFactory;
-use Denison\AsaasPackage\Factories\ConnectionFactory;
+use Denison\AsaasPackage\Repositories\CustomerRepository;
 
 class Customer implements CustomerInterface
 {
     protected $connection;
+    protected $customerRepo;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, CustomerRepository $customerRepo)
     {
         $this->connection = $connection;
+        $this->customerRepo = $customerRepo;
     }
 
     public function getAll()
     {
         try{
-            $response = $this->connection->get('customers');
-            return json_decode($response->getBody()->getContents(), true);
+            return $this->customerRepo->getAll('customers');
         }catch (ConnectionException $e) {
             throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
         } catch (ApiException $e) {
