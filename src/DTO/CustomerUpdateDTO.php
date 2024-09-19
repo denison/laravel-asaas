@@ -2,6 +2,8 @@
 
 namespace Denison\AsaasPackage\DTO;
 
+use Illuminate\Support\Facades\Validator;
+
 class CustomerUpdateDTO
 {
     private ?string $name;
@@ -65,6 +67,32 @@ class CustomerUpdateDTO
 
     public static function create(array $data): self
     {
+        // Definição das regras de validação
+        $validator = Validator::make($data, [
+            'name' => 'nullable|string',
+            'cpfCnpj' => 'nullable|string',
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string',
+            'mobilePhone' => 'nullable|string',
+            'address' => 'nullable|string',
+            'addressNumber' => 'nullable|string',
+            'complement' => 'nullable|string',
+            'province' => 'nullable|string',
+            'postalCode' => 'nullable|string',
+            'externalReference' => 'nullable|string',
+            'notificationDisabled' => 'nullable|boolean',
+            'additionalEmails' => 'nullable|string',
+            'municipalInscription' => 'nullable|string',
+            'stateInscription' => 'nullable|string',
+            'observations' => 'nullable|string',
+            'groupName' => 'nullable|string',
+            'company' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \InvalidArgumentException($validator->errors()->first());
+        }
+        
         return new self(
             $data['name'] ?? null,
             $data['cpfCnpj'] ?? null,

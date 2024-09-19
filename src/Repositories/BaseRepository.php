@@ -4,9 +4,10 @@ namespace Denison\AsaasPackage\Repositories;
 
 use Denison\AsaasPackage\Exceptions\ApiException;
 use Denison\AsaasPackage\Exceptions\ConnectionException;
+use Denison\AsaasPackage\Repositories\Base\RepositoryInterface;
 use Denison\AsaasPackage\Services\ResponseProcessor;
 
-abstract class BaseRepository
+abstract class BaseRepository implements RepositoryInterface
 {
     protected $connection;
     protected $responseProcessor;

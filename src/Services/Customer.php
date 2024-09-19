@@ -8,6 +8,7 @@ use Denison\AsaasPackage\DTO\CustomerDTO;
 use Denison\AsaasPackage\DTO\CustomerUpdateDTO;
 use Denison\AsaasPackage\Exceptions\ApiException;
 use Denison\AsaasPackage\Exceptions\ConnectionException;
+use Denison\AsaasPackage\Factories\CustomerDTOFactory;
 use Denison\AsaasPackage\Repositories\CustomerRepository;
 
 class Customer implements CustomerInterface
@@ -33,7 +34,8 @@ class Customer implements CustomerInterface
 
     public function create(array $data): ?array
     {
-        $customerDTO = CustomerDTO::create($data);
+        // $customerDTO = CustomerDTO::create($data);
+        $customerDTO = CustomerDTOFactory::create($data,'create');
 
         $endpoint = 'customers';
         $headers = [
@@ -44,7 +46,8 @@ class Customer implements CustomerInterface
 
     public function update(string $id, array $data = []): ?array
     {
-        $customerDTO = CustomerUpdateDTO::create($data);
+        // $customerDTO = CustomerUpdateDTO::create($data);
+        $customerDTO = CustomerDTOFactory::create($data,'update');
 
         $endpoint = "customers/{$id}";
         $headers = [
