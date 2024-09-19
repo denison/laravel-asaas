@@ -2,24 +2,44 @@
 
 namespace Denison\AsaasPackage\Repositories;
 
+use Denison\AsaasPackage\Exceptions\ApiException;
+use Denison\AsaasPackage\Exceptions\ConnectionException;
+use Denison\AsaasPackage\Services\ResponseProcessor;
+
 abstract class BaseRepository
 {
     protected $connection;
+    protected $responseProcessor;
 
-    public function __construct($connection)
+    public function __construct($connection, ResponseProcessor $responseProcessor)
     {
         $this->connection = $connection;
+        $this->responseProcessor = $responseProcessor;
     }
 
-    public function getAll(string $endpoint)
+    public function getAll(string $endpoint): ?array
     {
-        $response = $this->connection->get($endpoint);
-        return json_decode($response->getBody()->getContents(), true);
-    }
-
-    
-    public function find($id)
-    {
+        try{
+            $response = $this->connection->get($endpoint);
+            return $this->responseProcessor->process($response);
+        }catch (ConnectionException $e) {
+            throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
+        } catch (ApiException $e) {
+            throw new ApiException('Erro retornado pela API.', 0, $e);
+        }
         
     }
+
+    public function find(string $endpoint): ?array
+    {
+        try{
+            $response = $this->connection->get($endpoint);
+            return $this->responseProcessor->process($response);
+        }catch (ConnectionException $e) {
+            throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
+        } catch (ApiException $e) {
+            throw new ApiException('Erro retornado pela API.', 0, $e);
+        }
+    }
+
 }

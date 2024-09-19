@@ -4,6 +4,6 @@ namespace Denison\AsaasPackage\Contracts;
 
 interface CustomerInterface
 {
-    public function getAll();
-    public function getById($id);
+    public function getAll(): ?array;
+    public function getById($id): ?array;
 }

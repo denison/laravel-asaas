@@ -19,28 +19,13 @@ class Customer implements CustomerInterface
         $this->customerRepo = $customerRepo;
     }
 
-    public function getAll()
+    public function getAll(): ?array
     {
-        try{
-            return $this->customerRepo->getAll('customers');
-        }catch (ConnectionException $e) {
-            throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
-        } catch (ApiException $e) {
-            throw new ApiException('Erro retornado pela API.', 0, $e);
-        }
+        return $this->customerRepo->getAll('customers');
     }
 
-    public function getById($id)
+    public function getById($id): ?array
     {
-        try{
-            $response = $this->connection->get("customers/{$id}");
-            return json_decode($response->getBody()->getContents(), true);
-        }catch (ConnectionException $e) {
-            // Lidar com erros de conexão
-            throw new ConnectionException('Erro ao conectar com a API.', 0, $e);
-        } catch (ApiException $e) {
-            // Lidar com erros da API
-            throw new ApiException('Erro retornado pela API.', 0, $e);
-        }
+        return $this->customerRepo->find("customers/{$id}");
     }
 }
