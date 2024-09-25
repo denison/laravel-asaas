@@ -2,7 +2,7 @@
 
 namespace Denison\AsaasPackage\DTO\Payment;
 
-use Illuminate\Support\Facades\Date;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentDTO{
@@ -27,7 +27,7 @@ class PaymentDTO{
         string $customer,
         string $billingType,
         float $value,
-        Date $dueDate,
+        Carbon $dueDate,
         ?string $description,
         ?int $daysAfterDueDateToRegistrationCancellation,
         ?string $externalReference,
@@ -92,7 +92,7 @@ class PaymentDTO{
             $data['customer'],
             $data['billingType'],
             $data['value'],
-            $data['dueDate'],
+            Carbon::parse($data['dueDate']),
             $data['description'] ?? null,
             $data['daysAfterDueDateToRegistrationCancellation'] ?? null,
             $data['externalReference'] ?? null,
