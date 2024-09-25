@@ -21,7 +21,7 @@ class PaymentDTO{
     private $fine;
     private $postalService;
     private $split;
-    private $callback;
+    // private $callback;
 
     private function __construct(
         string $customer,
@@ -39,7 +39,7 @@ class PaymentDTO{
         ?array $fine,
         ?array $postalService,
         ?array $split,
-        ?array $callback,
+        // ?array $callback,
     )
     {
         $this->customer = $customer;
@@ -59,7 +59,7 @@ class PaymentDTO{
         $this->fine = $fine;
         $this->postalService = $postalService;
         $this->split = $split;
-        $this->callback = $callback;
+        // $this->callback = $callback;
     }
 
     public static function create(array $data): self
@@ -81,7 +81,7 @@ class PaymentDTO{
             'fine' => 'nullable|array',
             'postalService' => 'nullable|array',
             'split' => 'nullable|array',
-            'callback' => 'nullable|array',
+            // 'callback' => 'nullable|array',
         ]);
 
         if ($validator->fails()) {
@@ -104,7 +104,7 @@ class PaymentDTO{
             $data['fine'] ?? null,
             $data['postalService'] ?? null,
             $data['split'] ?? null,
-            $data['callback'] ?? null,
+            // $data['callback'] ?? null,
         );
     }
 
@@ -126,7 +126,7 @@ class PaymentDTO{
             'fine' => $this->fine,
             'postalService' => $this->postalService,
             'split' => $this->split,
-            'callback' => $this->callback,
+            // 'callback' => $this->callback,
         ];
     }
 }
