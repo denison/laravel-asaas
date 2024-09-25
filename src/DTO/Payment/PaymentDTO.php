@@ -100,7 +100,7 @@ class PaymentDTO{
             $data['totalValue'] ?? null,
             $data['installmentValue'] ?? null,
             $data['discount'] ?? null,
-            $data['interest'] ?? false,
+            $data['interest'] ?? null,
             $data['fine'] ?? null,
             $data['postalService'] ?? null,
             $data['split'] ?? null,
