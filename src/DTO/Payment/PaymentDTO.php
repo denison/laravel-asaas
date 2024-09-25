@@ -34,12 +34,12 @@ class PaymentDTO{
         ?int $installmentCount,
         ?float $totalValue,
         ?float $installmentValue,
-        ?object $discount,
-        ?object $interest,
-        ?object $fine,
-        ?object $postalService,
-        ?object $split,
-        ?object $callback,
+        ?array $discount,
+        ?array $interest,
+        ?array $fine,
+        ?array $postalService,
+        ?array $split,
+        ?array $callback,
     )
     {
         $this->customer = $customer;
@@ -76,12 +76,12 @@ class PaymentDTO{
             'installmentCount' => 'nullable|integer',
             'totalValue' => 'nullable|numeric',
             'installmentValue' => 'nullable|numeric',
-            'discount' => 'nullable|object',
-            'interest' => 'nullable|object',
-            'fine' => 'nullable|object',
-            'postalService' => 'nullable|object',
-            'split' => 'nullable|object',
-            'callback' => 'nullable|object',
+            'discount' => 'nullable|array',
+            'interest' => 'nullable|array',
+            'fine' => 'nullable|array',
+            'postalService' => 'nullable|array',
+            'split' => 'nullable|array',
+            'callback' => 'nullable|array',
         ]);
 
         if ($validator->fails()) {
