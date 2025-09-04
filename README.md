@@ -4,8 +4,24 @@ Pacote de integração simples com a API do [Asaas](https://asaas.com) para proj
 
 ## Instalação
 
+Para instalar a versão mais recente disponível:
+
 ```bash
 composer require denison/asaas-package
+
+## Atualização
+
+Para atualizar o pacote para a versão mais recente dentro da faixa instalada 
+Atenção: este pacote segue versionamento semântico (SemVer).
+
+Atualizações de major (ex.: 1.x → 2.x) podem trazer mudanças incompatíveis.
+
+Se você prefere estabilidade, instale fixando uma faixa de versão, como ^1.0.
+
+Se você prefere sempre a versão mais nova, use o comando acima sem restrições.
+```bash
+composer update denison/asaas-package
+
 
 ## Configuração
 
