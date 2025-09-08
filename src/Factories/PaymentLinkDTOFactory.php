@@ -7,7 +7,12 @@ use Denison\AsaasPackage\DTO\PaymentLink\PaymentLinkUpdateDTO;
 
 class PaymentLinkDTOFactory
 {
-    public static function create(array $data, string $type):  PaymentLinkDTO|PaymentLinkUpdateDTO
+    /**
+     * @param  array  $data
+     * @param  string $type
+     * @return PaymentLinkDTO|PaymentLinkUpdateDTO
+     */
+    public static function create(array $data, string $type)
     {
         if($type == 'create'){
             return PaymentLinkDTO::create($data);

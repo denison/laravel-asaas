@@ -7,7 +7,12 @@ use Denison\AsaasPackage\DTO\Subscription\SubscriptionUpdateDTO;
 
 class SubscriptionDTOFactory
 {
-    public static function create(array $data, string $type):  SubscriptionDTO|SubscriptionUpdateDTO
+     /**
+     * @param  array  $data
+     * @param  string $type
+     * @return SubscriptionDTO|SubscriptionUpdateDTO
+     */
+    public static function create(array $data, string $type)
     {
         if($type == 'create'){
             return SubscriptionDTO::create($data);

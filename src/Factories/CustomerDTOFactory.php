@@ -7,7 +7,12 @@ use Denison\AsaasPackage\DTO\CustomerUpdateDTO;
 
 class CustomerDTOFactory
 {
-    public static function create(array $data, string $type):  CustomerDTO|CustomerUpdateDTO
+    /**
+     * @param  array  $data
+     * @param  string $type
+     * @return CustomerDTO|CustomerUpdateDTO
+     */
+    public static function create(array $data, string $type)
     {
         if($type == 'create'){
             return CustomerDTO::create($data);
