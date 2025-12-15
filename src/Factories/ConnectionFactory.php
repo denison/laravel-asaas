@@ -24,7 +24,7 @@ class ConnectionFactory
             : env('ASAAS_API_KEY_SANDBOX');
 
         $baseUri = $appEnv === 'production'
-            ? 'https://www.asaas.com/api/v3/'
+            ? 'https://api.asaas.com/v3/'          // única correção obrigatória aqui
             : 'https://sandbox.asaas.com/api/v3/';
 
         return new Connection($baseUri, $apiKey);
