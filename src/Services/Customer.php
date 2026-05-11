@@ -32,6 +32,36 @@ class Customer implements CustomerInterface
         return $this->customerRepo->find("customers/{$id}");
     }
 
+    public function getByCpfCnpj(string $cpfCnpj): ?array
+    {
+        $document = preg_replace('/\D+/', '', $cpfCnpj);
+
+        if (empty($document)) {
+            return null;
+        }
+
+        $response = $this->customerRepo->find('customers?cpfCnpj='.urlencode($document));
+        $customers = $response['data'] ?? $response;
+
+        if (! is_array($customers) || empty($customers)) {
+            return null;
+        }
+
+        foreach ($customers as $customer) {
+            if (! is_array($customer)) {
+                continue;
+            }
+
+            $remoteDocument = preg_replace('/\D+/', '', (string) ($customer['cpfCnpj'] ?? ''));
+
+            if ($remoteDocument === $document) {
+                return $customer;
+            }
+        }
+
+        return null;
+    }
+
     public function create(array $data): ?array
     {
         // $customerDTO = CustomerDTO::create($data);
